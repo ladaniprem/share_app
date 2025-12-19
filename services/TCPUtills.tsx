@@ -119,22 +119,27 @@ export const receiveChunk = async (
   } catch (error) {
     console.log("Error processing received chunk:", error);
   }
-   
-    if (chunkNo + 1 === chunkStore?.totalchunks){
-      console.log("All chunks received, generating file...");
-      generateFile();
-      resetChunkStore();
-      return ;
-    }
-   
-    try {
-      await new Promise((resolve) => setTimeout(resolve,10));
-      console.log("Requesting next chunk:", chunkNo + 1);
-      socket.write(JSON.stringify({
-        event: 'send_chunk_ack',
-        chunkNo: chunkNo + 1,
-      }));
-    } catch (error) {
-      console.error("Error requesting next chunk:", error);
-    }
+
+  if (chunkNo + 1 === chunkStore?.totalchunks) {
+    console.log("All chunks received, generating file...");
+    generateFile();
+    resetChunkStore();
+    return;
+  }
+
+  if (!socket) {
+    console.error("Socket is not connected");
+    return;
+  }
+
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    console.log("Requesting next chunk:", chunkNo + 1);
+    socket.write(JSON.stringify({
+      event: 'send_chunk_ack',
+      chunkNo: chunkNo + 1,
+    }));
+  } catch (error) {
+    console.error("Error requesting next chunk:", error);
+  }
 };

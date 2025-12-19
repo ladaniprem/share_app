@@ -1,6 +1,101 @@
-# Welcome to your Expo app 👋
+# File Sharing App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An Expo React Native application for seamless file sharing between devices using TCP sockets. This app allows users to send and receive files (images, documents, media) over a local network with a modern, intuitive UI.
+
+## Features
+
+- **Device-to-device file sharing** via TCP sockets
+- **Send and receive** any file type (images, documents, media)
+- **Live connection status** and transfer progress
+- **Cross-platform**: Android & iOS support
+- **Modern UI** with animated feedback
+
+## Architecture & Flow Diagram
+
+```mermaid
+graph TD
+    A[Home Screen] -->|Start Connection| B(Connection Screen)
+    B -->|Connect to Device| C{TCPProvider}
+    C -->|Send File| D[Send File]
+    C -->|Receive File| E[Receive File]
+    D -->|Chunk & Encode| F[FileSystem]
+    E -->|Reassemble & Save| F
+    F -->|Update UI| B
+    B -->|Disconnect| A
+```
+
+**Key Components:**
+
+- `TCPProvider`: Manages TCP socket connection, file chunking, sending, and receiving logic.
+- `ConnectionScreen`: UI for managing connection, sending/receiving files, and showing transfer status.
+- `HomeScreen`: Entry point for starting a new connection or viewing received files.
+
+## How It Works
+
+1. **Connect Devices**: Users connect devices over the same network using TCP sockets.
+2. **Send File**: Selected files are chunked, encoded in base64, and sent over the socket.
+3. **Receive File**: Chunks are received, reassembled, and saved to device storage.
+4. **UI Updates**: Progress and status are updated in real-time.
+
+## Setup & Run
+
+1. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+2. **Start the app**
+
+   ```bash
+   npx expo start
+   ```
+
+3. **Open on device**
+   - Scan QR code with Expo Go
+   - Use Android/iOS emulator
+
+## Main Files & Structure
+
+- `app/`: Entry points for screens (home, connection, send, receive)
+- `components/Screen/`: UI screens for connection, sending, receiving
+- `services/TCPProvider.tsx`: TCP socket logic, file chunking, transfer management
+- `db/chunkStore.tsx`: State management for file chunks
+- `assets/`: Animations, icons, images
+
+## Example TCP Flow
+
+1. **Connect**: `TCPProvider.connect(url, deviceName)` establishes a WebSocket connection.
+2. **Send File**: `sendFileAck(file, type)` chunks and sends file data.
+3. **Receive File**: Chunks are reassembled and saved using `generateFile()`.
+4. **Disconnect**: Ends session and resets state.
+
+## Screenshots & Demo
+
+### App UI & File Transfer Screenshots
+
+- **Buliding Screen**
+   ![Buliding Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161202.png)
+- **Logo Screen**
+   ![Logo Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161230.png)
+- **Home Screen**
+   ![Home Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161250.png)
+- **Send screen**
+   ![Send screen](../share_app//App%20photos/Screenshot%202025-12-19%20161311.png)
+- **Receive screen**
+   ![Receive receive](../share_app/App%20photos/Screenshot%202025-12-19%20161328.png)
+- **Receive File**
+   ![Receive File](../share_app/App%20photos/Screenshot%202025-12-19%20161403.png)
+- **scan QR**
+   ![Scan OR](../share_app/App%20photos/Screenshot%202025-12-19%20161442.png)
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+MIT
 
 ## Get started
 
