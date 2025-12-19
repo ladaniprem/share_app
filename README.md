@@ -74,8 +74,8 @@ graph TD
 
 ### App UI & File Transfer Screenshots
 
-- **Buliding Screen**
-   ![Buliding Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161202.png)
+- **Building Screen**
+   ![Building Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161202.png)
 - **Logo Screen**
    ![Logo Screen](../share_app/App%20photos/Screenshot%202025-12-19%20161230.png)
 - **Home Screen**
