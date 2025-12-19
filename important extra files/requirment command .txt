@@ -1,0 +1,12 @@
+npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-svg react-native-linear-gradient expo-file-system expo-document-picker expo-image-picker expo-constants expo-clipboard uuid zustand immer buffer
+
+npm run pod-install for only for the ios device.
+in the package.json me add it this cmd  "pod-install": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install",
+
+react native cli using the bulid.gradle me apko project ke vectoreicons cmd paste karna hai vo apko android app cli document me se 
+mil jayega.
+
+https://reactnative.dev/docs/react-native-gradle-plugin
+
+android Manifest.xml file me apko user permission add karna hai.
+

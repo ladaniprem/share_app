@@ -1,24 +1,43 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import 'react-native-gesture-handler';
+import { Stack } from "expo-router";
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { Text, TextInput } from "react-native";
+import { SocketProvider } from '../services/TCPProvider';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+// Disable font scaling globally to match previous index.js behavior
+const TextAny = Text as any;
+TextAny.defaultProps = TextAny.defaultProps || {};
+TextAny.defaultProps.allowFontScaling = false;
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+const TextInputAny = TextInput as any;
+TextInputAny.defaultProps = TextInputAny.defaultProps || {};
+TextInputAny.defaultProps.allowFontScaling = false;
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const [fontsLoaded] = useFonts({
+    'okra-regular': require('../assets/fonts/Okra-Regular.ttf'),
+    'okra-medium': require('../assets/fonts/Okra-Medium.ttf'),
+    'okra-bold': require('../assets/fonts/Okra-Bold.ttf'),
+    'okra-Black': require('../assets/fonts/Okra-ExtraBold.ttf'),
+    'okra-Light': require('../assets/fonts/Okra-MediumLight.ttf'),
+  });
 
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SocketProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </SocketProvider>
   );
 }
