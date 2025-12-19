@@ -75,19 +75,32 @@ graph TD
 ### App UI & File Transfer Screenshots
 
 - **Building Screen**
-   ![Building Screen](App photos/Screenshot 2025-12-19 161202.png)
+
+   ![Building Screen](./App%20photos/Screenshot%202025-12-19%20161202.png)
+
 - **Logo Screen**
-   ![Logo Screen](App photos/Screenshot 2025-12-19 161230.png)
+
+   ![Logo Screen](./App%20photos/Screenshot%202025-12-19%20161230.png)
+
 - **Home Screen**
-   ![Home Screen](App photos/Screenshot 2025-12-19 161250.png)
+
+   ![Home Screen](./App%20photos/Screenshot%202025-12-19%20161250.png)
+
 - **Send screen**
-   ![Send Screen](App photos/Screenshot 2025-12-19 161311.png)
+
+   ![Send Screen](./App%20photos/Screenshot%202025-12-19%20161311.png)
+
 - **Receive screen**
-   ![Receive Screen](App photos/Screenshot 2025-12-19 161328.png)
+
+   ![Receive Screen](./App%20photos/Screenshot%202025-12-19%20161328.png)
+
 - **Receive File**
-   ![Receive File](App photos/Screenshot 2025-12-19 161403.png)
+
+   ![Receive File](./App%20photos/Screenshot%202025-12-19%20161403.png)
+
 - **scan QR**
-   ![Scan QR](App photos/Screenshot 2025-12-19 161442.png)
+
+   ![Scan QR](./App%20photos/Screenshot%202025-12-19%20161442.png)
 
 ## Contributing
 
